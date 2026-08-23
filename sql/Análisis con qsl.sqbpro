@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/pabue/OneDrive/Documentos/Aprendiendo SQL/Northwind.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2995"/><column_width id="4" width="0"/><expanded_item id="1" parent="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Products" custom_title="0" dock_id="4" table="4,8:mainProducts"/><dock_state state="000000ff00000000fd0000000100000002000002f000000295fc0100000002fb000000160064006f0063006b00420072006f00770073006500310100000000000002f00000000000000000fb000000160064006f0063006b00420072006f00770073006500340100000000000002f00000014d00ffffff000002f00000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Categories" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="92"/><column index="2" value="142"/><column index="3" value="300"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Customers" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="96"/><column index="2" value="300"/><column index="3" value="199"/><column index="4" value="300"/><column index="5" value="151"/><column index="6" value="94"/><column index="7" value="113"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Employees" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="97"/><column index="2" value="94"/><column index="3" value="85"/><column index="4" value="103"/><column index="5" value="113"/><column index="6" value="300"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="OrderDetails" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="109"/><column index="2" value="74"/><column index="3" value="87"/><column index="4" value="74"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Orders" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="71"/><column index="2" value="99"/><column index="4" value="103"/><column index="5" value="87"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Products" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="85"/><column index="2" value="300"/><column index="3" value="90"/><column index="4" value="95"/><column index="5" value="199"/><column index="6" value="65"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Shippers" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="84"/><column index="2" value="161"/><column index="3" value="142"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Suppliers" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="88"/><column index="2" value="300"/><column index="3" value="257"/><column index="4" value="300"/><column index="5" value="132"/><column index="6" value="90"/><column index="7" value="113"/><column index="8" value="151"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="sqlite_sequence" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="123"/><column index="2" value="55"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="Clientes por país ">SELECT 
+	Country, 
+	count(CustomerID) as NumberCustomers
+from Customers
+group by Country
+order by NumberCustomers desc;</sql><sql name="Productos más caros que el promedio ">SELECT 
+	ProductName, 
+	Price,
+	CategoryName
+from Products p
+join Categories c on p.CategoryID = c.CategoryID
+where Price &gt; (select avg(price) from Products)
+order by Price DESC;
+
+</sql><sql name="3 empleados con más órdenes">Select 
+	FirstName || ' ' ||	LastName as Name,
+	count(OrderID) as TotalOrder
+from Employees e
+join Orders o on o.EmployeeID = e.EmployeeID
+group by e.EmployeeID
+ORDER by totalOrder DESC
+Limit 3;
+
+</sql><sql name="Clientes que NUNCA han comprado">SELECT 
+	CustomerName
+from Customers c
+left join Orders o on o.CustomerID = c.CustomerID
+where o.OrderID is null;
+</sql><sql name="Los 10 productos más vendidos ">SELECT 
+	ProductName, 
+	CategoryName,
+	sum(od.Quantity * p.Price) as IngresosTotales
+from Products p
+join OrderDetails od on p.ProductID = od.ProductID
+join Categories c on c.CategoryID = p.CategoryID
+group by OrderID
+order by IngresosTotales DESC
+limit 10;</sql><sql name="Ventas mensuales *">SELECT
+	strftime('%Y-%m', o.OrderDate) as Mounth,
+	count(o.OrderID) as ProductosVendidos,
+	sum(od.Quantity * p.Price) as IngresosTotales
+from Orders o
+join OrderDetails od on od.OrderID = o.OrderID 
+join Products p on p.ProductID = od.ProductID
+GROUP by Mounth</sql><sql name=" Categorías más rentables y ticket promedio">SELECT c.CategoryName,
+	sum(od.Quantity * p.Price) as IngresosTotales,
+	round(avg(od.Quantity * p.Price),2)	as TicketPromedio 
+from OrderDetails od
+join Products p on od.ProductID = p.ProductID
+join Categories c on c.CategoryID = p.CategoryID
+GROUP by c.CategoryID
+order by IngresosTotales DESC;</sql><sql name="Análisis con CTEs (Common Table Expressions)">with VentasPorCliente as (
+	--Se crea la tabla temporal en memoria
+	SELECT
+			c.CustomerName as CustomerName,
+			sum(od.Quantity * p.Price) IngresoPorCliente
+	from OrderDetails od
+	join Products p on p.ProductID = od.ProductID
+	join Orders o on o.OrderID = od.OrderID
+	join Customers c on c.CustomerID = o.CustomerID
+	GROUP by c.CustomerName, c.CustomerID
+	
+)
+--Se consulta la tabla temporal con la condición
+SELECT 
+	CustomerName,
+	IngresoPorCliente
+from VentasPorCliente
+where IngresoPorCliente &gt; (SELECT avg(IngresoPorCliente) from VentasPorCliente)
+order by IngresoPorCliente DESC</sql><sql name="Ventas por país y categoría">SELECT 
+	cu.Country as Country,
+	SUM(CASE WHEN ca.CategoryName = 'Beverages' THEN od.Quantity ELSE 0 END) AS Beverages,
+    SUM(CASE WHEN ca.CategoryName = 'Condiments' THEN od.Quantity ELSE 0 END) AS Condiments,
+    SUM(CASE WHEN ca.CategoryName = 'Confections' THEN od.Quantity ELSE 0 END) AS Confections,
+    SUM(CASE WHEN ca.CategoryName = 'Dairy Products' THEN od.Quantity ELSE 0 END) AS &quot;Dairy Products&quot;,
+    SUM(CASE WHEN ca.CategoryName = 'Grains/Cereals' THEN od.Quantity ELSE 0 END) AS &quot;Grains/Cereals&quot;,
+    SUM(CASE WHEN ca.CategoryName = 'Meat/Poultry' THEN od.Quantity ELSE 0 END) AS &quot;Meat/Poultry&quot;,
+    SUM(CASE WHEN ca.CategoryName = 'Produce' THEN od.Quantity ELSE 0 END) AS Produce,
+    SUM(CASE WHEN ca.CategoryName = 'Seafood' THEN od.Quantity ELSE 0 END) AS Seafood
+from OrderDetails od
+join Orders o on o.OrderID = od.OrderID
+join Products p on p.ProductID = od.ProductID
+join Categories ca on ca.CategoryID = p.CategoryID
+join Customers cu on o.CustomerID = cu.CustomerID
+GROUP by cu.Country
+ORDER by Seafood Desc;</sql><current_tab id="5"/></tab_sql></sqlb_project>
