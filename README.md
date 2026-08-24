@@ -8,7 +8,6 @@ Proyecto end-to-end de análisis de datos sobre la base de datos relacional **No
 
 Responder preguntas de negocio reales a partir de datos transaccionales de ventas: ¿qué productos generan más ingresos?, ¿cómo evolucionan las ventas mes a mes?, ¿qué clientes regresan a comprar y cuáles no?
 
-El proyecto está pensado como pieza de portafolio para mi transición hacia el análisis de datos, partiendo de mi formación en física.
 
 ---
 
@@ -38,7 +37,7 @@ El proyecto está pensado como pieza de portafolio para mi transición hacia el 
 
 Se utiliza la base de datos de ejemplo **Northwind** (SQLite), que simula las ventas de una empresa importadora/exportadora de alimentos: pedidos, clientes, empleados, productos, categorías y proveedores.
 
-Para ejecutar el proyecto, coloca el archivo `Northwind.db` dentro de la carpeta `data/`. El notebook y las consultas SQL referencian esta ruta de forma relativa.
+Para ejecutar el proyecto, coloca el archivo `Northwind.db` dentro de la carpeta `data/`. El notebook y las consultas SQL referencian esta ruta de forma relativa. O bien, puedes copiar el código en el siguiente link: https://en.wikiversity.org/wiki/Database_Examples/Northwind/SQLite
 
 ---
 
@@ -63,7 +62,7 @@ Para ejecutar el proyecto, coloca el archivo `Northwind.db` dentro de la carpeta
 |---|---|
 | ![Cohortes](images/analisis_de_cohortes.png) | ![Retención](images/tasa_de_retencion_de_clientes.png) |
 
-**Insight destacado:** la cohorte de clientes de julio de 1996 no solo generó el mayor ingreso en su primer mes ($37,780), sino que fue la que mejor se sostuvo en el tiempo, con actividad de compra hasta 7 meses después — el tipo de patrón que en un contexto real llevaría a investigar qué canal o campaña originó esos clientes.
+**Insight destacado:** la cohorte de clientes de julio de no solo generó el mayor ingreso en su primer mes ($37,780), sino que fue la que mejor se sostuvo en el tiempo, con actividad de compra hasta 7 meses después, el tipo de patrón que en un contexto real llevaría a investigar qué canal o campaña originó esos clientes.
 
 ---
 
@@ -94,7 +93,7 @@ Dashboard de dos páginas construido sobre el mismo dataset:
 - **Ingresos segmentados por país:** mapa interactivo, ingresos por producto y KPIs (ingresos totales, órdenes, ticket promedio) que se recalculan según el país seleccionado
 - **Ingresos por fecha:** tendencia mensual de ingresos y distribución porcentual por categoría de producto, con filtros de país y año
 
-> 🎥 Puedes ver una demo en video del dashboard en mi publicación de LinkedIn: *(agregar enlace)*
+> 🎥 Puedes ver una demo en video del dashboard en mi publicación de LinkedIn: https://lnkd.in/p/gmsJHJFM
 
 ---
 
