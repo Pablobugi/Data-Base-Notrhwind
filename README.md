@@ -127,4 +127,5 @@ Dashboard de dos páginas construido sobre el mismo dataset:
 
 Si tienes comentarios o sugerencias sobre el proyecto, no dudes en contactarme. Estoy en transición hacia roles de análisis de datos y siempre abierto a feedback.
 
-*(Agregar aquí: LinkedIn / correo)*
+LinkedIn: Pablo Bueno
+
